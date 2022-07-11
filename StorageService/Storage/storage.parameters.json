@@ -1,0 +1,10 @@
+[
+  {
+    "connection_settings": {
+      "user_name": "storage",
+      "password": "Tubgtn1999tubgtn!",
+      "host": "localhost",
+      "database": "TestStorage"
+    }
+  }
+]
