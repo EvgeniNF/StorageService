@@ -1,15 +1,9 @@
-import decimal
 import sys
-
 import grpc
 from concurrent import futures
-
-import mysql.connector
-
 from StorageService.proto import storage_service_pb2_grpc as pb2_grpc
 from StorageService.Server import StorageService
 from StorageService import Logger as Log
-from StorageService.Storage.Connection import StorageConnection
 
 
 def parse_parameters(parameter: str):
