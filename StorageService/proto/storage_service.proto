@@ -3,16 +3,24 @@ syntax = "proto3";
 package Storage;
 
 service Storage {
+  rpc addUser(User)            returns (Status) {}
+  rpc removeUser(User)         returns (Status) {}
 
-  rpc getValues(User) returns (GetDataResponse) {}
+  rpc addExpense(UserExpense)      returns (Status) {}
+  rpc removeExpense(UserExpense)   returns (Status) {}
 
-  rpc setValues(UserValues) returns (Status) {}
+  rpc getExpenses(User)        returns (Expenses) {}
+  rpc setExpense(UserExpense)     returns (Status)   {}
+}
 
-  rpc removeUser(User) returns (Status) {}
+message Expense {
+  string name = 1;
+  float value = 2;
+}
 
-  rpc addUser(User) returns (Status) {}
-
-  rpc userIsExist(User) returns (IsExist) {}
+message UserExpense {
+  Expense expense = 1;
+  User user = 2;
 }
 
 message User {
@@ -20,27 +28,11 @@ message User {
   string name = 2;
 }
 
-message Value {
-  string key = 1;
-  float value = 2;
-}
-
-message UserValues {
-  User user = 1;
-  repeated Value values = 2;
-}
-
 message Status {
   bool is_success = 1;
-  string message = 2;
 }
 
-message GetDataResponse {
-  repeated Value values = 1;
+message Expenses {
+  repeated Expense data = 1;
   Status status = 2;
-}
-
-message IsExist {
-  Status request_status = 1;
-  bool is_exist = 2;
 }

@@ -1,13 +1,28 @@
+import decimal
+import sys
+
 import grpc
 from concurrent import futures
+
+import mysql.connector
+
 from StorageService.proto import storage_service_pb2_grpc as pb2_grpc
 from StorageService.Server import StorageService
 from StorageService import Logger as Log
+from StorageService.Storage.Connection import StorageConnection
+
+
+def parse_parameters(parameter: str):
+    result = parameter.find("--settings")
+    if result == -1:
+        raise ValueError
+    parameter = parameter.split("=")
+    return parameter[1]
 
 
 def main():
     grpc_server = grpc.server(thread_pool=futures.ThreadPoolExecutor(max_workers=10))
-    pb2_grpc.add_StorageServicer_to_server(StorageService(), grpc_server)
+    pb2_grpc.add_StorageServicer_to_server(StorageService(parse_parameters(sys.argv[1])), grpc_server)
     grpc_server.add_insecure_port('[::]:50051')
     grpc_server.start()
     Log.info("StorageService", "Server was started")
@@ -18,10 +33,5 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as error:
-        Log.error("Service.Storage", f"Closed with error: {error}")
-        quit(-1)
-
+    main()
     quit(0)

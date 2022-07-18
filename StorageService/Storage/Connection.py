@@ -31,7 +31,10 @@ class ConnectionSettings:
 class StorageConnection(metaclass=SingleTone):
     __lock = Lock()
 
-    def __init__(self, path_to_connection_settings) -> None:
+    def __init__(self) -> None:
+        self.__connection = None
+
+    def connect(self, path_to_connection_settings):
         settings = ConnectionSettings()
 
         if not settings.readParametersFormJson(path_to_connection_settings):

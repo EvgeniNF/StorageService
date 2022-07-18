@@ -14,14 +14,9 @@ class StorageStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.getValues = channel.unary_unary(
-                '/Storage.Storage/getValues',
+        self.addUser = channel.unary_unary(
+                '/Storage.Storage/addUser',
                 request_serializer=StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
-                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.GetDataResponse.FromString,
-                )
-        self.setValues = channel.unary_unary(
-                '/Storage.Storage/setValues',
-                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.UserValues.SerializeToString,
                 response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
                 )
         self.removeUser = channel.unary_unary(
@@ -29,28 +24,32 @@ class StorageStub(object):
                 request_serializer=StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
                 response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
                 )
-        self.addUser = channel.unary_unary(
-                '/Storage.Storage/addUser',
-                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
+        self.addExpense = channel.unary_unary(
+                '/Storage.Storage/addExpense',
+                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
                 response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
                 )
-        self.userIsExist = channel.unary_unary(
-                '/Storage.Storage/userIsExist',
+        self.removeExpense = channel.unary_unary(
+                '/Storage.Storage/removeExpense',
+                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
+                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
+                )
+        self.getExpenses = channel.unary_unary(
+                '/Storage.Storage/getExpenses',
                 request_serializer=StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
-                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.IsExist.FromString,
+                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Expenses.FromString,
+                )
+        self.setExpense = channel.unary_unary(
+                '/Storage.Storage/setExpense',
+                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
+                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
                 )
 
 
 class StorageServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def getValues(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def setValues(self, request, context):
+    def addUser(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -62,13 +61,25 @@ class StorageServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def addUser(self, request, context):
+    def addExpense(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def userIsExist(self, request, context):
+    def removeExpense(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def getExpenses(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def setExpense(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -77,14 +88,9 @@ class StorageServicer(object):
 
 def add_StorageServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'getValues': grpc.unary_unary_rpc_method_handler(
-                    servicer.getValues,
+            'addUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.addUser,
                     request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.User.FromString,
-                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.GetDataResponse.SerializeToString,
-            ),
-            'setValues': grpc.unary_unary_rpc_method_handler(
-                    servicer.setValues,
-                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.UserValues.FromString,
                     response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
             ),
             'removeUser': grpc.unary_unary_rpc_method_handler(
@@ -92,15 +98,25 @@ def add_StorageServicer_to_server(servicer, server):
                     request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.User.FromString,
                     response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
             ),
-            'addUser': grpc.unary_unary_rpc_method_handler(
-                    servicer.addUser,
-                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.User.FromString,
+            'addExpense': grpc.unary_unary_rpc_method_handler(
+                    servicer.addExpense,
+                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.FromString,
                     response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
             ),
-            'userIsExist': grpc.unary_unary_rpc_method_handler(
-                    servicer.userIsExist,
+            'removeExpense': grpc.unary_unary_rpc_method_handler(
+                    servicer.removeExpense,
+                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.FromString,
+                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
+            ),
+            'getExpenses': grpc.unary_unary_rpc_method_handler(
+                    servicer.getExpenses,
                     request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.User.FromString,
-                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.IsExist.SerializeToString,
+                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Expenses.SerializeToString,
+            ),
+            'setExpense': grpc.unary_unary_rpc_method_handler(
+                    servicer.setExpense,
+                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.FromString,
+                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -113,7 +129,7 @@ class Storage(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def getValues(request,
+    def addUser(request,
             target,
             options=(),
             channel_credentials=None,
@@ -123,25 +139,8 @@ class Storage(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/getValues',
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/addUser',
             StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
-            StorageService_dot_proto_dot_storage__service__pb2.GetDataResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def setValues(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/setValues',
-            StorageService_dot_proto_dot_storage__service__pb2.UserValues.SerializeToString,
             StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -164,7 +163,7 @@ class Storage(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def addUser(request,
+    def addExpense(request,
             target,
             options=(),
             channel_credentials=None,
@@ -174,14 +173,14 @@ class Storage(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/addUser',
-            StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/addExpense',
+            StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
             StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def userIsExist(request,
+    def removeExpense(request,
             target,
             options=(),
             channel_credentials=None,
@@ -191,8 +190,42 @@ class Storage(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/userIsExist',
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/removeExpense',
+            StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
+            StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def getExpenses(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/getExpenses',
             StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
-            StorageService_dot_proto_dot_storage__service__pb2.IsExist.FromString,
+            StorageService_dot_proto_dot_storage__service__pb2.Expenses.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def setExpense(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/setExpense',
+            StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
+            StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

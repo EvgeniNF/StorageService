@@ -14,36 +14,35 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n*StorageService/proto/storage_service.proto\x12\x07Storage\"%\n\x04User\x12\x0f\n\x07\x63hat_id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"#\n\x05Value\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"I\n\nUserValues\x12\x1b\n\x04user\x18\x01 \x01(\x0b\x32\r.Storage.User\x12\x1e\n\x06values\x18\x02 \x03(\x0b\x32\x0e.Storage.Value\"-\n\x06Status\x12\x12\n\nis_success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"R\n\x0fGetDataResponse\x12\x1e\n\x06values\x18\x01 \x03(\x0b\x32\x0e.Storage.Value\x12\x1f\n\x06status\x18\x02 \x01(\x0b\x32\x0f.Storage.Status\"D\n\x07IsExist\x12\'\n\x0erequest_status\x18\x01 \x01(\x0b\x32\x0f.Storage.Status\x12\x10\n\x08is_exist\x18\x02 \x01(\x08\x32\x85\x02\n\x07Storage\x12\x36\n\tgetValues\x12\r.Storage.User\x1a\x18.Storage.GetDataResponse\"\x00\x12\x33\n\tsetValues\x12\x13.Storage.UserValues\x1a\x0f.Storage.Status\"\x00\x12.\n\nremoveUser\x12\r.Storage.User\x1a\x0f.Storage.Status\"\x00\x12+\n\x07\x61\x64\x64User\x12\r.Storage.User\x1a\x0f.Storage.Status\"\x00\x12\x30\n\x0buserIsExist\x12\r.Storage.User\x1a\x10.Storage.IsExist\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n*StorageService/proto/storage_service.proto\x12\x07Storage\"&\n\x07\x45xpense\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"M\n\x0bUserExpense\x12!\n\x07\x65xpense\x18\x01 \x01(\x0b\x32\x10.Storage.Expense\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.Storage.User\"%\n\x04User\x12\x0f\n\x07\x63hat_id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1c\n\x06Status\x12\x12\n\nis_success\x18\x01 \x01(\x08\"K\n\x08\x45xpenses\x12\x1e\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x10.Storage.Expense\x12\x1f\n\x06status\x18\x02 \x01(\x0b\x32\x0f.Storage.Status2\xc1\x02\n\x07Storage\x12+\n\x07\x61\x64\x64User\x12\r.Storage.User\x1a\x0f.Storage.Status\"\x00\x12.\n\nremoveUser\x12\r.Storage.User\x1a\x0f.Storage.Status\"\x00\x12\x35\n\naddExpense\x12\x14.Storage.UserExpense\x1a\x0f.Storage.Status\"\x00\x12\x38\n\rremoveExpense\x12\x14.Storage.UserExpense\x1a\x0f.Storage.Status\"\x00\x12\x31\n\x0bgetExpenses\x12\r.Storage.User\x1a\x11.Storage.Expenses\"\x00\x12\x35\n\nsetExpense\x12\x14.Storage.UserExpense\x1a\x0f.Storage.Status\"\x00\x62\x06proto3')
 
 
 
+_EXPENSE = DESCRIPTOR.message_types_by_name['Expense']
+_USEREXPENSE = DESCRIPTOR.message_types_by_name['UserExpense']
 _USER = DESCRIPTOR.message_types_by_name['User']
-_VALUE = DESCRIPTOR.message_types_by_name['Value']
-_USERVALUES = DESCRIPTOR.message_types_by_name['UserValues']
 _STATUS = DESCRIPTOR.message_types_by_name['Status']
-_GETDATARESPONSE = DESCRIPTOR.message_types_by_name['GetDataResponse']
-_ISEXIST = DESCRIPTOR.message_types_by_name['IsExist']
+_EXPENSES = DESCRIPTOR.message_types_by_name['Expenses']
+Expense = _reflection.GeneratedProtocolMessageType('Expense', (_message.Message,), {
+  'DESCRIPTOR' : _EXPENSE,
+  '__module__' : 'StorageService.proto.storage_service_pb2'
+  # @@protoc_insertion_point(class_scope:Storage.Expense)
+  })
+_sym_db.RegisterMessage(Expense)
+
+UserExpense = _reflection.GeneratedProtocolMessageType('UserExpense', (_message.Message,), {
+  'DESCRIPTOR' : _USEREXPENSE,
+  '__module__' : 'StorageService.proto.storage_service_pb2'
+  # @@protoc_insertion_point(class_scope:Storage.UserExpense)
+  })
+_sym_db.RegisterMessage(UserExpense)
+
 User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
   'DESCRIPTOR' : _USER,
   '__module__' : 'StorageService.proto.storage_service_pb2'
   # @@protoc_insertion_point(class_scope:Storage.User)
   })
 _sym_db.RegisterMessage(User)
-
-Value = _reflection.GeneratedProtocolMessageType('Value', (_message.Message,), {
-  'DESCRIPTOR' : _VALUE,
-  '__module__' : 'StorageService.proto.storage_service_pb2'
-  # @@protoc_insertion_point(class_scope:Storage.Value)
-  })
-_sym_db.RegisterMessage(Value)
-
-UserValues = _reflection.GeneratedProtocolMessageType('UserValues', (_message.Message,), {
-  'DESCRIPTOR' : _USERVALUES,
-  '__module__' : 'StorageService.proto.storage_service_pb2'
-  # @@protoc_insertion_point(class_scope:Storage.UserValues)
-  })
-_sym_db.RegisterMessage(UserValues)
 
 Status = _reflection.GeneratedProtocolMessageType('Status', (_message.Message,), {
   'DESCRIPTOR' : _STATUS,
@@ -52,36 +51,27 @@ Status = _reflection.GeneratedProtocolMessageType('Status', (_message.Message,),
   })
 _sym_db.RegisterMessage(Status)
 
-GetDataResponse = _reflection.GeneratedProtocolMessageType('GetDataResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETDATARESPONSE,
+Expenses = _reflection.GeneratedProtocolMessageType('Expenses', (_message.Message,), {
+  'DESCRIPTOR' : _EXPENSES,
   '__module__' : 'StorageService.proto.storage_service_pb2'
-  # @@protoc_insertion_point(class_scope:Storage.GetDataResponse)
+  # @@protoc_insertion_point(class_scope:Storage.Expenses)
   })
-_sym_db.RegisterMessage(GetDataResponse)
-
-IsExist = _reflection.GeneratedProtocolMessageType('IsExist', (_message.Message,), {
-  'DESCRIPTOR' : _ISEXIST,
-  '__module__' : 'StorageService.proto.storage_service_pb2'
-  # @@protoc_insertion_point(class_scope:Storage.IsExist)
-  })
-_sym_db.RegisterMessage(IsExist)
+_sym_db.RegisterMessage(Expenses)
 
 _STORAGE = DESCRIPTOR.services_by_name['Storage']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _USER._serialized_start=55
-  _USER._serialized_end=92
-  _VALUE._serialized_start=94
-  _VALUE._serialized_end=129
-  _USERVALUES._serialized_start=131
-  _USERVALUES._serialized_end=204
-  _STATUS._serialized_start=206
-  _STATUS._serialized_end=251
-  _GETDATARESPONSE._serialized_start=253
-  _GETDATARESPONSE._serialized_end=335
-  _ISEXIST._serialized_start=337
-  _ISEXIST._serialized_end=405
-  _STORAGE._serialized_start=408
-  _STORAGE._serialized_end=669
+  _EXPENSE._serialized_start=55
+  _EXPENSE._serialized_end=93
+  _USEREXPENSE._serialized_start=95
+  _USEREXPENSE._serialized_end=172
+  _USER._serialized_start=174
+  _USER._serialized_end=211
+  _STATUS._serialized_start=213
+  _STATUS._serialized_end=241
+  _EXPENSES._serialized_start=243
+  _EXPENSES._serialized_end=318
+  _STORAGE._serialized_start=321
+  _STORAGE._serialized_end=642
 # @@protoc_insertion_point(module_scope)
