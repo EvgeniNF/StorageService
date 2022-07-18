@@ -8,7 +8,7 @@ from StorageService.Storage.ActionsUsers import AddUser, RemoveUser
 from StorageService.Storage.ActionsExpense import AddExpenses, RemoveExpenses, GetExpenses, UpdateExpenses
 
 
-logger = "StorageService"
+logger = "Storage.Service"
 
 
 class StorageService(pb2_grpc.StorageServicer):

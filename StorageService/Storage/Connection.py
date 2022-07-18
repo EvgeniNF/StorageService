@@ -3,8 +3,6 @@ from mysql.connector import CMySQLConnection
 from StorageService.SingleTone import SingleTone
 from StorageService import Logger as Log
 from StorageService.Exceptions import BaseError
-from StorageService.Mutex import ScopedMutex
-from threading import Lock
 import json
 
 
@@ -29,7 +27,6 @@ class ConnectionSettings:
 
 
 class StorageConnection(metaclass=SingleTone):
-    __lock = Lock()
 
     def __init__(self) -> None:
         self.__connection = None
@@ -51,11 +48,9 @@ class StorageConnection(metaclass=SingleTone):
             Log.error("Storage.Connection", connection_error.msg)
 
     def isConnected(self) -> bool:
-        _ = ScopedMutex(self.__lock)
         return self.__connection.is_connected()
 
     def getCursor(self) -> [CMySQLConnection, None]:
-        _ = ScopedMutex(self.__lock)
         try:
             cursor = self.__connection.cursor()
             return cursor
@@ -64,7 +59,6 @@ class StorageConnection(metaclass=SingleTone):
             return None
 
     def reconnect(self) -> bool:
-        _ = ScopedMutex(self.__lock)
         try:
             self.__connection.reconnect(5, 100)
             return True
@@ -73,7 +67,6 @@ class StorageConnection(metaclass=SingleTone):
             return False
 
     def commit(self) -> bool:
-        _ = ScopedMutex(self.__lock)
         try:
             self.__connection.commit()
             return True
