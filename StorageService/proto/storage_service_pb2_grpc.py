@@ -44,6 +44,16 @@ class StorageStub(object):
                 request_serializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
                 response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
                 )
+        self.addMoney = channel.unary_unary(
+                '/Storage.Storage/addMoney',
+                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.Money.SerializeToString,
+                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
+                )
+        self.getMoney = channel.unary_unary(
+                '/Storage.Storage/getMoney',
+                request_serializer=StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
+                response_deserializer=StorageService_dot_proto_dot_storage__service__pb2.GetMoneyResponse.FromString,
+                )
 
 
 class StorageServicer(object):
@@ -85,6 +95,18 @@ class StorageServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def addMoney(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def getMoney(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_StorageServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -117,6 +139,16 @@ def add_StorageServicer_to_server(servicer, server):
                     servicer.setExpense,
                     request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.UserExpense.FromString,
                     response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
+            ),
+            'addMoney': grpc.unary_unary_rpc_method_handler(
+                    servicer.addMoney,
+                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.Money.FromString,
+                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.Status.SerializeToString,
+            ),
+            'getMoney': grpc.unary_unary_rpc_method_handler(
+                    servicer.getMoney,
+                    request_deserializer=StorageService_dot_proto_dot_storage__service__pb2.User.FromString,
+                    response_serializer=StorageService_dot_proto_dot_storage__service__pb2.GetMoneyResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -227,5 +259,39 @@ class Storage(object):
         return grpc.experimental.unary_unary(request, target, '/Storage.Storage/setExpense',
             StorageService_dot_proto_dot_storage__service__pb2.UserExpense.SerializeToString,
             StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def addMoney(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/addMoney',
+            StorageService_dot_proto_dot_storage__service__pb2.Money.SerializeToString,
+            StorageService_dot_proto_dot_storage__service__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def getMoney(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Storage.Storage/getMoney',
+            StorageService_dot_proto_dot_storage__service__pb2.User.SerializeToString,
+            StorageService_dot_proto_dot_storage__service__pb2.GetMoneyResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -3,14 +3,17 @@ syntax = "proto3";
 package Storage;
 
 service Storage {
-  rpc addUser(User)            returns (Status) {}
-  rpc removeUser(User)         returns (Status) {}
+  rpc addUser(User)    returns (Status) {}
+  rpc removeUser(User) returns (Status) {}
 
   rpc addExpense(UserExpense)      returns (Status) {}
   rpc removeExpense(UserExpense)   returns (Status) {}
 
   rpc getExpenses(User)        returns (Expenses) {}
-  rpc setExpense(UserExpense)     returns (Status)   {}
+  rpc setExpense(UserExpense)  returns (Status)   {}
+
+  rpc addMoney(Money) returns (Status)           {}
+  rpc getMoney(User)  returns (GetMoneyResponse) {}
 }
 
 message Expense {
@@ -36,3 +39,14 @@ message Expenses {
   repeated Expense data = 1;
   Status status = 2;
 }
+
+message Money {
+  User user = 1;
+  float value = 2;
+}
+
+message GetMoneyResponse {
+  float value = 1;
+  Status status = 2;
+}
+
